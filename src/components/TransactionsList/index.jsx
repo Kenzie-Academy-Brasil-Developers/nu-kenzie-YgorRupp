@@ -1,19 +1,31 @@
-import React from 'react'
-import DashCard from './DashCard'
+import React from "react";
+import DashCard from "./DashCard";
+import "./styles.css";
 
 const ListTransactions = ({ listTransactions, removeTransactions }) => {
-  console.log(listTransactions)
   return (
-
     <ul>
-
-      {listTransactions.map((transactions, index) => 
-        <DashCard key={index} listTransactions={transactions} removeTransactions={removeTransactions} />
-
+      {listTransactions.map((transaction, index) =>
+        transaction.type === "entrada" ? (
+          <DashCard
+            key={index}
+            transaction={transaction}
+            removeTransactions={removeTransactions}
+            className="containerInfoContentEntrada"
+          />
+        ) : (
+          transaction.type === "saida" && (
+            <DashCard
+              key={index}
+              transaction={transaction}
+              removeTransactions={removeTransactions}
+              className="containerInfoContentSaida"
+            />
+          )
+        )
       )}
     </ul>
+  );
+};
 
-  )
-}
-
-export default ListTransactions
+export default ListTransactions;

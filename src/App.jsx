@@ -1,52 +1,46 @@
-
 import "./App.css";
-import LandingPage from "./pages/LandingPage"
-import DashBoardPage from "./pages/DashBoardPage"
+import LandingPage from "./pages/LandingPage";
+import DashBoardPage from "./pages/DashBoardPage";
 import { useState } from "react";
 
-
-
 export const App = () => {
+  const [login, setLogin] = useState(false);
 
-  const[login, setLogin] = useState(false)
+  const [listTransactions, setListTransactions] = useState([]);
+  const [filter, setFilter] = useState("todos");
+  
+  const filterListTransactions = listTransactions.filter((transaction) =>
+    filter === "todos" ? true : transaction.type === filter
+  );
 
-  const [listTransactions, setListTransactions] = useState([
-
-    { description: "Salário recebido", type: "entrada", value: 2500 },
-    { description: "Conta de luz", type: "saída", value: -150 }
-
-  ])
-
-  console.log(listTransactions)
-
-  function createTransactions(transactionsData){
-    setListTransactions([...listTransactions, transactionsData])
-
+  function createTransactions(transactionsData) {
+    setListTransactions([...listTransactions, transactionsData]);
   }
 
-  function removeTransactions(transactionsDescription){
+  function removeTransactions(transactionsId) {
+    const newList = listTransactions.filter(
+      (transactions) => transactions !== transactionsId
+    );
 
-    const newList = listTransactions.filter(transactions => transactions.description !== transactionsDescription)
-    console.log(newList)
-
-    setListTransactions(newList)
+    setListTransactions(newList);
   }
-
-  console.log(...listTransactions)
-  console.log(createTransactions)
 
   return (
     <div className="App">
-
       {login ? (
-        <DashBoardPage listTransactions = {listTransactions} createTransactions={createTransactions} removeTransactions = {removeTransactions} setLogin={setLogin} />
-      ) :(
+        <DashBoardPage
+          listTransactions={filterListTransactions}
+          createTransactions={createTransactions}
+          removeTransactions={removeTransactions}
+          setLogin={setLogin}
+          setListTransactions={setListTransactions}
+          setFilter={setFilter}
+          filter={filter}
+        />
+      ) : (
         <LandingPage setLogin={setLogin} />
       )}
-
     </div>
+    
   );
-  
-}
-
-
+};

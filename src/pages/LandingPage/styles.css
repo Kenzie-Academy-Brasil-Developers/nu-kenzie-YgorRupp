@@ -22,7 +22,6 @@
     color: #FFFFFF;
     margin-bottom: 28px;
     font-family: 'Nunito', sans-serif;
-    /* width: 53%; */
 }
 .containerLeft p {
     font-weight: 400;
@@ -36,6 +35,7 @@
     height: 48px;
     background-color: #FD377E;
     border: 2px solid #FD377E;
+    border-radius: 8px;
     font-weight: 500;
     font-size: 16px;
     color: #FFFFFF;

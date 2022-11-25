@@ -197,7 +197,7 @@
     font-family: 'Nunito', sans-serif;
     cursor: pointer;
 }
-.filterButtons button:focus{
+.filterButtons button.active{
     background-color: #FD377E;
     color: #FFFFFF;
 }

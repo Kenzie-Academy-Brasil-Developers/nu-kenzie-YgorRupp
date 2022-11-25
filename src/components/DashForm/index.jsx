@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import uuid from 'react-uuid';
 
-const DashForm = ({ index, listTransactions, createTransactions }) => {
+const DashForm = ({ index, createTransactions,}) => {
   const [formData, setFormData] = useState({
+    id: uuid(),
     description: "",
     type: "",
     value: "",
@@ -11,8 +13,9 @@ const DashForm = ({ index, listTransactions, createTransactions }) => {
     event.preventDefault();
     createTransactions(formData);
     setFormData({
+      id: uuid(),
       description: "",
-      type: "",
+      type: event.target.children[3].children[1].children[1].value,
       value: "",
     });
   };
